@@ -1,15 +1,34 @@
 package arend.arendvandormalen_pset5;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String masterListTitle = "master";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+    public void addList(View view) {
+
+        EditText listTitleBox = (EditText)findViewById(R.id.add_bar_master);
+        String listTitle = listTitleBox.getText().toString();
+
+        Intent intent = new Intent(this, SingleListActivity.class);
+        intent.putExtra("listTitle", listTitle);
+        startActivity(intent);
+
+    }
+
+
+
 }
 
 
@@ -32,6 +51,37 @@ public class MainActivity extends AppCompatActivity {
 
  CODE DEMO:
 
+-Singleton (new singleton in menu)
+
+public class StringManager{
+
+    private static StringManager instance = new StringManager();
+    private static String usefulString;
+
+    public static StringManager getInstance() = return instance;
+
+    // constructor
+    private StringManager(){
+        usefulString = "this is the initial String";
+    }
+
+    public void setUsefulString(String newString){
+        usefulString = newString;
+    }
+
+    public String getUsefulString(){
+        return usefulString;
+    }
+
+}
+
+
+MainActivity:
+
+
+manager = usefulString.getInstance();
+TextView stringTv = (TextView)...
+manager.setUsefulSting(newString);
 
 
 
